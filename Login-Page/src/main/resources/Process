@@ -1,0 +1,55 @@
+1)Implementing security to your application to access it
+Adding Spring Security Dependency
+Username is "user"
+Password is "generated password"
+You can provide your own username and password in application.properties
+
+2)CSRF_Token
+for Post,Put,Delete simply if you want do changes in your application,
+username and password is not enough along with csrf_token is required
+create an api to get csrf_token in HomeController.java
+then under Headers section of API in postman
+give key as "X-CSRF-TOKEN"
+and value as "generated csrf token"
+then you can do modifications to your project
+
+3)How to provide your own login page, disable csrf, session maintainance
+Go through the SecurityConfig.java file which is enabled as @EnablerWebSecurity
+And securityFilterChain() method has diabled csrf,maintained session, login page in postman and web browser
+and exclude certain url's from security check-in
+
+4)How can multiple users can login the application
+/register controller has to create to create new user and store it in database
+while storing, password should be in hasing format
+so that user is created.
+To validate the user from database, you should take control of AuthenticationProvider in SecurityConfig.java
+authenticationProvider() method.
+it should define two parameters --- setPasswordEncoder() and setUserDetailsService()
+create a class MyUserDetailsService implements UserDetailsService and the method in it returns UserDetails object
+create a class UserPrincipal implements UserDetails and provide definition for all the methods and create constructor.
+
+This username and password is a basic authorization and not secure very much
+here we are implementing Bearer Token method
+
+5)How to generate a token from username and password
+You have to take control of authenticationManager() in SecurityConfig.java
+/login create an api and write a code accordingly for request body username and password
+at last token will be generated when you access this endpoint based on your username,issue date,
+expiry date, and signature. Note down the token.
+
+6)Validate the token
+while accessing security enabled endpoint, you should select "Bearer Token" and provide the token.
+firstly, JWTFilter should get execute before UsernamePasswordAuthenticationFilter in SecurityConfig.java
+and create classes JWTFilter and JWTService and define methods.
+Then it will work
+
+http://localhost:8080/register
+Provide Users object in body of JSON
+http://localhost:8080/login
+to get JWT token based on username and password
+http://localhost/home/welcome get
+security is included
+either basic auth/bearer token
+if basic auth---username and password from users table
+if bearer token---token from login
+
