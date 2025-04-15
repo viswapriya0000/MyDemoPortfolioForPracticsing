@@ -32,6 +32,7 @@ This username and password is a basic authorization and not secure very much
 here we are implementing Bearer Token method
 
 5)How to generate a token from username and password
+first download these dependencies jjwt:API, jjwt:Impl, jjwt-Jackson with same versions
 You have to take control of authenticationManager() in SecurityConfig.java
 /login create an api and write a code accordingly for request body username and password
 at last token will be generated when you access this endpoint based on your username,issue date,
