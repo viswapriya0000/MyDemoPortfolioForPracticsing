@@ -42,8 +42,27 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-        //http.formLogin(Customizer.withDefaults());
-        //.logout(Customizer.withDefaults())
+       //Basic Authorisation
+        //CSRF enabled
+//        return http.authorizeHttpRequests(request -> request
+//                        .requestMatchers("/register","/login")
+//                        .permitAll()
+//                        .anyRequest().authenticated())
+//                .httpBasic(Customizer.withDefaults())//TO access the URL in postman
+//                .logout(Customizer.withDefaults())
+//                .build();
+
+        //Basic Authorisation
+        //CSRF disabled
+//        return http.csrf(customizer -> customizer.disable())
+//                .authorizeHttpRequests(request -> request
+//                        .requestMatchers("/register","/login")
+//                        .permitAll()
+//                        .anyRequest().authenticated())
+//                .httpBasic(Customizer.withDefaults())//TO access the URL in postman
+//                .logout(Customizer.withDefaults())
+//                .build();
+
     }
 
     //you are providing your own behaviour for the filter Usernameandpasswordauthentication filter
