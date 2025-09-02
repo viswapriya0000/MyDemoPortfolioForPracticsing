@@ -74,6 +74,7 @@ public class SecurityConfig {
     }
 
     //You are providing your own behaviour for authentication provider (which is also one of the spring filter)
+    //Unauthenticated data is giving to authentication provider and it returns authenticated data.
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
@@ -88,3 +89,4 @@ public class SecurityConfig {
 
     }
 }
+
