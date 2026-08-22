@@ -1,0 +1,2 @@
+Class Second{
+}
